@@ -1,0 +1,222 @@
+body {
+	font-family: 'Open Sans',Arial;
+	font-weight: 300;
+	background-color: #999;
+}
+
+body.loaded {
+	background-color: #CCC;
+	transition: all 0.5s;
+}
+
+a {
+	text-decoration: none;
+	color: #09C;
+}
+
+#ajaxNotification {
+	background-color: red;
+	color: white;
+	padding: 10px;
+	position: fixed;
+	top: 10px;
+	right: -10px;
+	opacity: 0;
+	z-index: 2000;
+	border-radius: 5px;
+	transition: all 0.5s;
+	cursor: default;
+}
+
+#ajaxNotification.loaded {
+	right: 10px;
+	opacity: 1;
+	transition: all 0.5s;
+}
+
+#ajaxLoader {
+	position: absolute;
+	right: 150px;
+	top: 17px;
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #FFF;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+#ajaxLoader.loaded {
+	opacity: 1;
+	transition: all 0.5s;
+}
+
+/* WELCOME SEQUENCE
+#welcome1,
+#welcome2
+#welcome3 {
+	content: #333;
+	position: absolute;
+	font-size: 40px;
+	top: 250px;
+	left: 220px;
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+#welcome1.loaded,
+#welcome2.loaded,
+#welcome3.loaded {
+	opacity: 1;
+	top: 250px;
+	left: 250px;
+	transition: all 0.5s;
+}
+*/
+
+/* INPUT CONTAINER */
+
+#inputContainer {
+	position: fixed;
+	width:100%;
+	top: -40px;
+	z-index: 1000;
+	background-color: #19212C;
+}
+
+#inputContainer.loaded {
+	top: 0px !important;
+	transition: all 0.5s;
+}
+
+#homeIcon {
+	font-size: 24px;
+	padding: 0 10px;
+	color: #FFF;
+}
+
+#homeIcon .fa-angle-right {
+	padding-left: 10px;
+}
+
+#inputContainer input[type=text] {
+	font-size: 16px;
+	padding: 10px;
+	width: 50%;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	color: #FFF;
+}
+
+::-webkit-input-placeholder {
+	color: #FFF;
+}
+
+#submit {
+	position: absolute;
+	right: 10px;
+	top: 14px;
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #FFF;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+#submit.loaded {
+	opacity: 1;
+	transition: all 0.5s;
+}
+
+/* OUTPUT CONTAINER */
+
+#outputContainer {
+	padding-top: 50px;
+	line-height: 22px;
+	opacity: 0;
+}
+
+#outputContainer.loaded {
+	opacity: 1;
+	transition: all 0.5s;
+}
+
+.fqResult {
+	width: 300px;
+	height: 130px;
+	margin: 5px;
+	float: left;
+	padding: 10px;
+	position: relative;
+	background: #FFF;
+}
+
+.fqResult h2 {
+	font-weight: 600;
+	border-bottom: 1px dotted #CCC;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.fqResult h2 .fa {
+	color: #0072B1;
+}
+
+.fqResult .tierrating {
+	position: absolute;
+	top: -4px;
+	right:0;
+	font-size: 10px;
+}
+
+.tier, .rating {
+	padding: 0 5px;
+	background: #EFEFEF;
+}
+
+.fa-star {
+	color: #A8CB17;
+}
+
+/* DISABLED - NO ROOM
+
+.fqResult .checkinstips {
+	position: absolute;
+	top: 0px;
+	right:0;
+	font-size: 10px;
+	background: #A8CB17;
+}
+
+.checkins, .tips {
+	padding: 0 5px;
+}
+
+*/
+
+.fqResult .phoneurl {
+	font-size: 12px;
+}
+
+.fqResult .phone {
+	color: #7FAF1B;
+	left: 10px;
+	bottom: 5px;
+	position: absolute;
+}
+
+.fqResult .url {
+	color: #09C;
+	right: 10px;
+	bottom: 5px;
+	position: absolute;
+}
