@@ -55,7 +55,7 @@ $(document).ready(function() {
         type: 'POST',
         data: JSON.stringify(array),
         contentType: 'application/json',
-        url: 'http://localhost:3000/endpoint',
+        url: '/endpoint',
         success: function(res) {
 
           $('#outputContainer').addClass('loaded')
