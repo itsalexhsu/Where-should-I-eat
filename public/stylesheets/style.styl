@@ -81,14 +81,18 @@ a {
 #inputContainer {
 	position: fixed;
 	width:100%;
-	top: -40px;
+	height: 100%;
 	z-index: 1000;
-	background-color: #19212C;
+	padding-top:20%;
+	background-color: #8A211D;
+	transition: all 0.5s;
 }
 
-#inputContainer.loaded {
+#inputContainer.submitted {
+	height: 40px;
 	top: 0px !important;
-	transition: all 0.5s;
+	padding-top: 0;
+	transition: all 1s;
 }
 
 #homeIcon {
@@ -155,6 +159,7 @@ a {
 	padding: 10px;
 	position: relative;
 	background: #FFF;
+	line-height: 24px;
 }
 
 .fqResult h2 {
@@ -173,7 +178,7 @@ a {
 
 .fqResult .tierrating {
 	position: absolute;
-	top: -4px;
+	top: -5px;
 	right:0;
 	font-size: 10px;
 }

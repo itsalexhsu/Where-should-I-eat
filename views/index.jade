@@ -6,25 +6,16 @@ block content
 
   #inputContainer
   
-    form
-      // button#destButton More Destinations
+    form#foodCategory
       ul#destList.noBullet
-        li#destList_0
+        li#destList
           span#homeIcon(class="fa fa-cutlery")
             i(class="fa fa-angle-right")
-          input#destAddr_0(type="text",name="",placeholder="Start by entering a location")
-          label(for="query_0",style="display: none;",required) Query: 
-          input#query_0(type="text",name="query_0",value="Food",style="display: none;")
+          input#destAddr(type="text",name="",placeholder="Looking for food? Let's start by entering a location!")
+          label(for="query",style="display: none;",required) Query: 
+          input#query(type="text",name="query",value="Food",style="display: none;")
           p#ajaxLoader Searching...
           button#submit Press enter to search
-        
-  // WELCOME SEQUENCE DISABLED
-  //#welcomeText
-    p#welcome1 Hello!
-    p#welcome2 Start by typing where you would like to eat
-    p#welcome3 And we'll show you a list of recommendations!
-
-  #outputContainer
 
     div#fqWrap
       ul#fqResponse
