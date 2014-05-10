@@ -4,7 +4,7 @@ body {
   background-color: #999;
 }
 body.loaded {
-  background-color: #ccc;
+  background-color: #efefef;
   transition: all 0.5s;
 }
 a {
@@ -16,7 +16,6 @@ a {
   color: #fff;
   padding: 10px;
   position: fixed;
-  top: 10px;
   right: -10px;
   opacity: 0;
   z-index: 2000;
@@ -46,37 +45,24 @@ a {
   opacity: 1;
   transition: all 0.5s;
 }
-/* WELCOME SEQUENCE
-#welcome1,
-#welcome2
-#welcome3 {
-	content: #333;
-	position: absolute;
-	font-size: 40px;
-	top: 250px;
-	left: 220px;
-	opacity: 0;
-	transition: all 0.5s;
+.rating_1,
+.rating_2,
+.rating_3,
+.rating_4,
+.rating_5,
+.rating_6,
+.rating_7 {
+  display: none;
 }
-
-#welcome1.loaded,
-#welcome2.loaded,
-#welcome3.loaded {
-	opacity: 1;
-	top: 250px;
-	left: 250px;
-	transition: all 0.5s;
-}
-*/
-/* INPUT CONTAINER */
 #inputContainer {
   position: fixed;
   width: 100%;
   height: 100%;
   z-index: 1000;
   padding-top: 20%;
-  background-color: #8a211d;
-  transition: all 0.5s;
+  background-color: #00a8c6;
+  transition: height 0.5s;
+  transition: background-color 5s;
 }
 #inputContainer.submitted {
   height: 40px;
@@ -88,6 +74,7 @@ a {
   font-size: 24px;
   padding: 0 10px;
   color: #fff;
+  width: 50px;
 }
 #homeIcon .fa-angle-right {
   padding-left: 10px;
@@ -101,13 +88,13 @@ a {
   cursor: pointer;
   color: #fff;
 }
-::-webkit-input-placeholder {
+-webkit-input-placeholder {
   color: #fff;
 }
 #submit {
   position: absolute;
   right: 10px;
-  top: 14px;
+  margin-top: 14px;
   font-size: 10px;
   text-transform: uppercase;
   color: #fff;
@@ -122,8 +109,17 @@ a {
   transition: all 0.5s;
 }
 /* OUTPUT CONTAINER */
+.fqResults_break {
+  padding: 10px;
+  position: relative;
+  clear: both;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #333;
+  font-weight: 600;
+}
 #outputContainer {
-  padding-top: 50px;
+  padding-top: 41px;
   line-height: 22px;
   opacity: 0;
 }
@@ -134,7 +130,7 @@ a {
 .fqResult {
   width: 300px;
   height: 130px;
-  margin: 5px;
+  margin: 0 1px 1px 0;
   float: left;
   padding: 10px;
   position: relative;
@@ -167,21 +163,6 @@ a {
 .fa-star {
   color: #a8cb17;
 }
-/* DISABLED - NO ROOM
-
-.fqResult .checkinstips {
-	position: absolute;
-	top: 0px;
-	right:0;
-	font-size: 10px;
-	background: #A8CB17;
-}
-
-.checkins, .tips {
-	padding: 0 5px;
-}
-
-*/
 .fqResult .phoneurl {
   font-size: 12px;
 }

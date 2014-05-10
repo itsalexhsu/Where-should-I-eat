@@ -1,8 +1,14 @@
 $(document).ready(function() {
 
+  var d = new Date().getHours()
+  console.log(d)
+
   // Ajax loader
-  $(document).ajaxStart(function () {$('#ajaxLoader').addClass('loaded')})
-  $(document).ajaxStop(function () {$('#ajaxLoader').removeClass('loaded')})
+  $(document).ajaxStart(function () {
+    $('#homeIcon').removeClass('fa fa-cutlery')
+    $('#homeIcon').addClass('fa fa-rotate-right')
+  })
+  $(document).ajaxStop(function () {$('#homeIcon').addClass('fa fa-cutlery')})
 
   //Page load animation
   $('#inputContainer').addClass('loaded')
@@ -16,11 +22,66 @@ $(document).ready(function() {
     $('#submit').removeClass('loaded')
   })
 
-  // Filters
+  // Loading Graphic AM/PM
+
+  if (d >= 6 && d <= 11) {
+    console.log('morning!')
+    $('#inputContainer').addClass('morningStyle')
+  } else if (d >= 12 && d  <= 17 ) {
+    console.log('afternoon!')
+    $('#inputContainer').addClass('afternoonStyle')
+  } else if (d>= 18 && d  <= 23) {
+    console.log('evening!')
+    $('#inputContainer').addClass('eveningStyle')
+  } else {
+    console.log('very late!')
+    $('#inputContainer').addClass('midnightStyle')
+  }
+
+  /* Filters
 
   $('#tier1filter').on('click', function() {
     $('.fqResult').not('.tier_1').addClass('hide');
   })
+
+  */
+
+  /* Price Filter Sliders
+  $( "#slider-range-price" ).slider({
+    range: "min",
+    min: 1,
+    max: 5,
+    value: 1,
+    slide: function( event, ui ) {
+      if (ui.value === 1) {
+        valueStyled = '<i class="fa fa-usd"></i>'
+      } else if (ui.value === 2) {
+        valueStyled = '<i class="fa fa-usd"></i><i class="fa fa-usd"></i>'
+      } else if (ui.value === 3) {
+        valueStyled = '<i class="fa fa-usd"></i><i class="fa fa-usd"></i><i class="fa fa-usd"></i>'
+      } else if (ui.value === 4) {
+        valueStyled = '<i class="fa fa-usd"></i><i class="fa fa-usd"></i><i class="fa fa-usd"></i><i class="fa fa-usd"></i>'
+      } else {
+        valueStyled = '<i class="fa fa-usd"></i><i class="fa fa-usd"></i><i class="fa fa-usd"></i><i class="fa fa-usd"></i><i class="fa fa-usd"></i>'
+      }
+      $( "#amount-price" ).html(valueStyled)
+    }
+  })
+  $( "#amount-price" ).val( $( "#slider-range-price" ).slider( "value" ) )
+  */
+
+  /* Rating Filter Sliders
+  $( "#slider-range-rating" ).slider({
+    range: "max",
+    min: 1,
+    max: 5,
+    value: 1,
+    slide: function( event, ui ) {
+      $( "#amount-rating" ).val( ui.value )
+    }
+  })
+  $( "#amount-rating" ).val( $( "#slider-range-rating" ).slider( "value" ) )
+  */
 
   // Form onsubmit events
   $('#submit').on('click', function() {
@@ -114,18 +175,20 @@ $(document).ready(function() {
               $(
                   '<li class="fqResult rating_' + Math.round(rating) + ' tier_' + tier + '" id="fqResult_' + i + '">'
                   + '<h2 title="' + nameStyled + '"><a class="fa fa-foursquare" href="' + fqurl + '" target="_blank"></a> ' + name + '</h2>'
-                  + '<p class="tierrating"><span class="rating">' + ratingStyled + '</span>'
-                  + '<span class="tier">' + tierStyled + '</span></p>'
+                  + '<p class="tierrating">' + '<span class="tier">' + tierStyled + '</span></p>'
                   // + '<p class="checkinstips"><span title="checkins" class="checkins">' + checkins + '</span>' +
                   // + '<span title="tips" class="tips">' + tips + '</span></p>' +
                   + '<p class="addr">' + addrStyled + '</p>'
-                  + '<p class="cityzip">' + city + ' ' + stateStyled + '</p>'
+                  + '<p class="cityzip">' + cityStyled + ' ' + stateStyled + '</p>'
                   + '<p class="postal">' + postalStyled + '</p>'
                   + '<p class="phoneurl"><span class="phone"><i class="fa fa-phone"></i> ' + phoneStyled
                   + '</span><span class="url"><i class="fa fa-globe"></i> <a href="' + urlStyled + '" target="_blank">Visit Website</a></span></li>'
                   //+ '<a href="#" id="fqRemove_' + i + '">Remove</a>'
                 ).prependTo('#fqResponse')
             })
+
+            $('<li class="fqResults_break">4 Stars or higher closest to &mdash; '+ loc +'</li>').prependTo('#fqResponse')
+
           })
         },
         error: function() {

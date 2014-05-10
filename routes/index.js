@@ -17,7 +17,7 @@ router.post('/endpoint', function(req, res) {
   var obj = JSON.parse(JSON.stringify(req.body))
   var loc = obj.location
 
-  var fqurl = 'https://api.foursquare.com/v2/venues/explore?client_secret=WSK1HU2DCIHM5CCP4VJSMBBYBNJRGQTH4HNMQALMSA1JB403&client_id=L0XD1HB0Q14EAOIBABH5QQKWIW0ZWCRHTJDCTAKPSLLRPPAH&near=' + loc + /* '&query=' + query + */ '&section=' + category +  '&v=20140401'
+  var fqurl = 'https://api.foursquare.com/v2/venues/explore?client_secret=WSK1HU2DCIHM5CCP4VJSMBBYBNJRGQTH4HNMQALMSA1JB403&client_id=L0XD1HB0Q14EAOIBABH5QQKWIW0ZWCRHTJDCTAKPSLLRPPAH&near=' + loc + /* '&query=' + query + */ '&section=' + category +  '&sortByDistance=1&openNow=1&v=20140401'
 
   console.log('Making API call: ' + fqurl)
 
