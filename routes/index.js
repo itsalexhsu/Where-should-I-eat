@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
-var fqcategories = '4d4b7105d754a06374d81259'
-var category = 'food'
-
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Where should I eat?' });
@@ -12,12 +9,22 @@ router.get('/', function(req, res) {
 
 router.post('/endpoint', function(req, res) {
 
-  console.log('request: ' + JSON.stringify(req.body))
+  console.log('Request: ' + JSON.stringify(req.body))
 
   var obj = JSON.parse(JSON.stringify(req.body))
-  var loc = obj.location
+  console.log(obj)
 
-  var fqurl = 'https://api.foursquare.com/v2/venues/explore?client_secret=WSK1HU2DCIHM5CCP4VJSMBBYBNJRGQTH4HNMQALMSA1JB403&client_id=L0XD1HB0Q14EAOIBABH5QQKWIW0ZWCRHTJDCTAKPSLLRPPAH&near=' + loc + /* '&query=' + query + */ '&section=' + category +  '&sortByDistance=1&openNow=1&v=20140401'
+  try {
+    JSON.parse(JSON.stringify(req.body),
+    function (k, v) {
+      if (k === 'location') loc = v
+      if (k === 'category') cat = v
+    })
+  } catch (e) {
+    console.error('Parsing error:', e)
+  }
+
+  var fqurl = 'https://api.foursquare.com/v2/venues/explore?client_secret=WSK1HU2DCIHM5CCP4VJSMBBYBNJRGQTH4HNMQALMSA1JB403&client_id=L0XD1HB0Q14EAOIBABH5QQKWIW0ZWCRHTJDCTAKPSLLRPPAH&near=' + loc + /* '&query=' + query + */ '&section=' + cat +  '&sortByDistance=1&openNow=1&v=20140401'
 
   console.log('Making API call: ' + fqurl)
 

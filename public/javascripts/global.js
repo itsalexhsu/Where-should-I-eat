@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-  var d = new Date().getHours()
-  console.log(d)
-
   // Ajax loader
   $(document).ajaxStart(function () {
     $('#homeIcon').removeClass('fa fa-cutlery')
@@ -24,18 +21,24 @@ $(document).ready(function() {
 
   // Loading Graphic AM/PM
 
+  var d = new Date().getHours()
+
   if (d >= 6 && d <= 11) {
     console.log('morning!')
     $('#inputContainer').addClass('morningStyle')
+    var cat = 'Breakfast'
   } else if (d >= 12 && d  <= 17 ) {
     console.log('afternoon!')
     $('#inputContainer').addClass('afternoonStyle')
+    var cat = 'Lunch'
   } else if (d>= 18 && d  <= 23) {
     console.log('evening!')
     $('#inputContainer').addClass('eveningStyle')
+    var cat = 'Dinner'
   } else {
     console.log('very late!')
     $('#inputContainer').addClass('midnightStyle')
+    var cat = 'Club'
   }
 
   /* Filters
@@ -98,9 +101,12 @@ $(document).ready(function() {
       $('#inputContainer').addClass('submitted')
 
       var loc = $('#destAddr').val()
-      var obj = {location: loc}
+      var obj = [
+        {location: loc},
+        {category: cat}
+      ]
 
-      console.log('post:' + JSON.stringify(obj))
+      console.log('Received:' + JSON.stringify(obj))
 
       var a = $.ajax({
         type: 'POST',
@@ -187,7 +193,7 @@ $(document).ready(function() {
                 ).prependTo('#fqResponse')
             })
 
-            $('<li class="fqResults_break">4 Stars or higher closest to &mdash; '+ loc +'</li>').prependTo('#fqResponse')
+            $('<li class="fqResults_break">Results for <strong>' + cat + ' </strong> that are <strong>Highest Rated</strong> closest to &mdash; <strong>'+ loc +'</strong></li>').prependTo('#fqResponse')
 
           })
         },

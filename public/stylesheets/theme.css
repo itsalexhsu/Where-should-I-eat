@@ -1,3 +1,9 @@
 #inputContainer.eveningStyle {
   background: #301860;
 }
+#inputContainer.morningStyle {
+  background-image: url("/images/breakfast_1.jpg");
+  background-position: 0% 0%;
+  background-color: #ffdcd8;
+  background-size: 110%;
+}
