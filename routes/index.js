@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var contextual = require('contextual');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -14,17 +15,11 @@ router.post('/endpoint', function(req, res) {
   var obj = JSON.parse(JSON.stringify(req.body))
   console.log(obj)
 
-  try {
-    JSON.parse(JSON.stringify(req.body),
-    function (k, v) {
-      if (k === 'location') loc = v
-      if (k === 'category') cat = v
-    })
-  } catch (e) {
-    console.error('Parsing error:', e)
-  }
+  // Contextual Engine's Results
+  var loc = contextual.geo(obj.location)
+  var qry = contextual.want(obj.query)
 
-  var fqurl = 'https://api.foursquare.com/v2/venues/explore?client_secret=WSK1HU2DCIHM5CCP4VJSMBBYBNJRGQTH4HNMQALMSA1JB403&client_id=L0XD1HB0Q14EAOIBABH5QQKWIW0ZWCRHTJDCTAKPSLLRPPAH&near=' + loc + /* '&query=' + query + */ '&section=' + cat +  '&sortByDistance=1&openNow=1&v=20140401'
+  var fqurl = 'https://api.foursquare.com/v2/venues/explore?client_secret=WSK1HU2DCIHM5CCP4VJSMBBYBNJRGQTH4HNMQALMSA1JB403&client_id=L0XD1HB0Q14EAOIBABH5QQKWIW0ZWCRHTJDCTAKPSLLRPPAH&near=' + loc + /* '&query=' + query + */ '&q=' + qry +  '&sortByDistance=1&openNow=1&&venuePhotos=1&v=20140401'
 
   console.log('Making API call: ' + fqurl)
 

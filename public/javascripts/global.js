@@ -26,19 +26,19 @@ $(document).ready(function() {
   if (d >= 6 && d <= 11) {
     console.log('morning!')
     $('#inputContainer').addClass('morningStyle')
-    var cat = 'Breakfast'
+    var qry = 'Breakfast'
   } else if (d >= 12 && d  <= 17 ) {
     console.log('afternoon!')
     $('#inputContainer').addClass('afternoonStyle')
-    var cat = 'Lunch'
+    var qry = 'Lunch'
   } else if (d>= 18 && d  <= 23) {
     console.log('evening!')
     $('#inputContainer').addClass('eveningStyle')
-    var cat = 'Dinner'
+    var qry = 'Dinner'
   } else {
     console.log('very late!')
     $('#inputContainer').addClass('midnightStyle')
-    var cat = 'Club'
+    var qry = 'Nightlife'
   }
 
   /* Filters
@@ -101,10 +101,10 @@ $(document).ready(function() {
       $('#inputContainer').addClass('submitted')
 
       var loc = $('#destAddr').val()
-      var obj = [
-        {location: loc},
-        {category: cat}
-      ]
+      var obj = {
+        location: loc,
+        query: qry
+      }
 
       console.log('Received:' + JSON.stringify(obj))
 
@@ -141,6 +141,8 @@ $(document).ready(function() {
               try { var tier = fqItems[i].venue.price.tier } catch (e) {console.log(e)}
               try { var rating = fqItems[i].venue.rating } catch (e) {console.log(e)}
               try { var id  = fqItems[i].venue.id } catch (e) {console.log(e)}
+              try { var photoPrefix = fqItems[i].venue.photos.groups[0].items[0].prefix } catch (e) {console.log(e)}
+              try { var photoSuffix = fqItems[i].venue.photos.groups[0].items[0].suffix } catch (e) {console.log(e)}
 
               var fqurl = 'https://foursquare.com/v/' + id
 
@@ -177,9 +179,15 @@ $(document).ready(function() {
               if (phone === undefined) { var phoneStyled = 'Missing'} else {var phoneStyled = phone}
               if (url === undefined) { var urlStyled = fqurl} else {var urlStyled = url}
               if (name === undefined) { var nameStyled = cityStyled} else {var nameStyled = name}
+              if (photoPrefix === undefined) { var photoPrefixStyled = '/images/'} else {var photoPrefixStyled = photoPrefix}
+              if (photoSuffix === undefined) { var photoSuffixStyled = 'missing.jpg'} else {var photoSuffixStyled = photoSuffix}
 
               $(
                   '<li class="fqResult rating_' + Math.round(rating) + ' tier_' + tier + '" id="fqResult_' + i + '">'
+                  + '<div class="fqResultImg">'
+                  + '<img src="' + photoPrefixStyled + '300x300' + photoSuffixStyled + '" alt="' + nameStyled + '">'
+                  + '</div>'
+                  + '<div class="fqResultDetail">'
                   + '<h2 title="' + nameStyled + '"><a class="fa fa-foursquare" href="' + fqurl + '" target="_blank"></a> ' + name + '</h2>'
                   + '<p class="tierrating">' + '<span class="tier">' + tierStyled + '</span></p>'
                   // + '<p class="checkinstips"><span title="checkins" class="checkins">' + checkins + '</span>' +
@@ -189,11 +197,11 @@ $(document).ready(function() {
                   + '<p class="postal">' + postalStyled + '</p>'
                   + '<p class="phoneurl"><span class="phone"><i class="fa fa-phone"></i> ' + phoneStyled
                   + '</span><span class="url"><i class="fa fa-globe"></i> <a href="' + urlStyled + '" target="_blank">Visit Website</a></span></li>'
-                  //+ '<a href="#" id="fqRemove_' + i + '">Remove</a>'
+                  + '</div>'
                 ).prependTo('#fqResponse')
             })
 
-            $('<li class="fqResults_break">Results for <strong>' + cat + ' </strong> that are <strong>Highest Rated</strong> closest to &mdash; <strong>'+ loc +'</strong></li>').prependTo('#fqResponse')
+            $('<li class="fqResults_break">Results for <strong>' + qry + ' </strong> that are <strong>Highest Rated</strong> closest to &mdash; <strong>'+ loc +'</strong></li>').prependTo('#fqResponse')
 
           })
         },

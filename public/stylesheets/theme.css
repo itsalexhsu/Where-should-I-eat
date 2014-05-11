@@ -1,9 +1,16 @@
 #inputContainer.eveningStyle {
-  background: #301860;
+  background-image: url("/images/dinner_1.JPG");
+  background-position: 0% 0%;
+  background-color: #302a4e;
+  background-size: 110%;
 }
 #inputContainer.morningStyle {
-  background-image: url("/images/breakfast_1.jpg");
+  background-image: url("/images/breakfast_1.JPG");
   background-position: 0% 0%;
   background-color: #ffdcd8;
   background-size: 110%;
+}
+#inputContainer.eveningStyle.submitted,
+#inputContainer.morningStyle.submitted {
+  background-position: 0% -1000px;
 }
