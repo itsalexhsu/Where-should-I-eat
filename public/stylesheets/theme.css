@@ -1,16 +1,17 @@
 #inputContainer.eveningStyle {
-  background-image: url("/images/dinner_1.JPG");
-  background-position: 0% 0%;
+  background-image: url("/images/dinner_1.jpg");
   background-color: #302a4e;
-  background-size: 110%;
 }
 #inputContainer.morningStyle {
-  background-image: url("/images/breakfast_1.JPG");
+  background-image: url("/images/breakfast_1.jpg");
+  background-color: #8acecf;
+}
+#inputContainer.eveningStyle,
+#inputContainer.morningStyle {
   background-position: 0% 0%;
-  background-color: #ffdcd8;
   background-size: 110%;
 }
 #inputContainer.eveningStyle.submitted,
 #inputContainer.morningStyle.submitted {
-  background-position: 0% -1000px;
+  background-position: 0% -1100px;
 }
