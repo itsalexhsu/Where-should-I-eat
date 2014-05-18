@@ -1,9 +1,7 @@
 #inputContainer.eveningStyle {
-  background-image: url("/images/dinner_1.jpg");
   background-color: #302a4e;
 }
 #inputContainer.morningStyle {
-  background-image: url("/images/breakfast_1.jpg");
   background-color: #8acecf;
 }
 #inputContainer.eveningStyle,
